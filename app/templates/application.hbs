@@ -1,3 +1,11 @@
-<h2 id='title'>Welcome to Ember.js</h2>
-
-{{outlet}}
+<header class="bar bar-nav">
+	{{#link-to "settings" class="icon icon-gear pull-right"}}{{/link-to}}
+	<h1 class="title">Barbell</h1>
+</header>
+<div class="content">
+	{{outlet}}
+</div>
+{{#ratchet-modal title="One nice title"}}
+	{{outlet modal}}
+{{/ratchet-modal}}
+{{outlet popover}}

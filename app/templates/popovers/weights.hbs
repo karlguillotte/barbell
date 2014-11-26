@@ -1,0 +1,9 @@
+<ul class="table-view">
+	{{#each weight in settings.weights}}
+	<li class="table-view-cell">
+		<a {{action "setWeight" weight}} href="#">
+			{{weight}} {{unit}}
+		</a>
+	</li>
+	{{/each}}
+</ul>
