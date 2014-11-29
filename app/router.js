@@ -11,8 +11,8 @@ Router.map(function() {
 	  this.route('plates');
 	  this.route('barWeights');
 	  this.route('units');
+	  this.route('percentages');
   });
-  this.route('settings/barWeights');
 });
 
 export default Router;

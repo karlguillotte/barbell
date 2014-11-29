@@ -4,13 +4,13 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	percentages: [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50],
+	availablePlateWeights: [45, 35, 25, 10, 5, 2.5],
+	availableLengthPlateWeights: [8, 6, 6, 8, 4, 2],
 	stacks: function() {
-		var availablePlateWeights = [45, 35, 25, 10, 5, 2.5];
-		var availableLengthPlateWeights = [8, 6, 6, 8, 4, 2];
-		var stacks = availablePlateWeights.map(function(plateWeight, index) {
+		var stacks = this.availablePlateWeights.map(function(plateWeight, index) {
 			var plates = [];
 
-			for (var i = 0; i < availableLengthPlateWeights[index]; i++) {
+			for (var i = 0; i < this.availableLengthPlateWeights[index]; i++) {
 				plates.push({
 					weight: plateWeight
 				});

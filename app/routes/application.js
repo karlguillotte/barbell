@@ -1,34 +1,33 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	view: function() {
-		return this.container.lookup('view:application');
+	renderComponent: function(componentName, outlet) {
+		this.render(modalName, {
+			into: 'application',
+			outlet: outlet,
+			controller: modalName
+		});
 	},
-	popover: function() {
-		return this.view().$('.popover:first');
-	},
-	modal: function() {
-		return this.view().$('.modal:first');
+	disconnectComponent: function(outlet) {
+		this.disconnectOutlet({
+			parentView: 'application',
+			outlet: outlet
+		});		
 	},
 	actions: {
-		openModal: function() {
-			this.modal().addClass('active');
+		openModal: function(modalName) {
+			this.renderComponent(modalName, 'modal');
 		},
 		closeModal: function() {
-			this.modal().addClass('remove');
+			this.disconnectComponent('modal');
 		},
-		openPopover: function(component, name) {
-			this.render(name, {
-				into: 'application',
-				outlet: 'popover',
-				view: this.container.lookup('component:ratchet-popover')
-			});
+		openPopover: function(link) {
+			var popoverName = link.get('name');
+
+			this.renderComponent(popoverName, 'popover');
 		},
 		closePopover: function() {
-			this.disconnect({
-				into: 'application',
-				outlet: 'popover'
-			});
+			this.disconnectComponent('popover');
 		}
 	}
 });

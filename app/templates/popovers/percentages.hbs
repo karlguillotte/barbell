@@ -1,9 +1,9 @@
 {{#ratchet-popover title=title}}
 	<ul class="table-view">
-		{{#each weight in weights}}
+		{{#each percentage in percentages}}
 		<li class="table-view-cell">
-			<a {{action "setWeight" weight}} href="#">
-				{{weight}} {{unit}}
+			<a {{action "setPercentage" percentage}} href="#">
+				{{percentage}}%
 			</a>
 		</li>
 		{{/each}}

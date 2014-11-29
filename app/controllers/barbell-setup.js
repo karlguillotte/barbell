@@ -7,9 +7,7 @@ var compare = Ember.compare;
 
 export default Ember.ObjectController.extend({
 	needs: ['application'],
-	application: reads('controllers.application'),
-	percentages: reads('application.percentages'),
-	barWeights: reads('application.barWeights'),
+	stacks: reads('controllers.application.stacks'),
 	effectiveWeight: product('weight', 'intensity'),
 	weight: 400,
 	intensity: 1,
@@ -30,7 +28,7 @@ export default Ember.ObjectController.extend({
 	}.property('effectiveWeight', 'barWeight'),
 	sideStacks: function() {
 		var sideWeight = this.get('sideWeight');
-		var stacks = this.get('application.stacks');
+		var stacks = this.get('stacks');
 
 		return stacks.pick(sideWeight);
 	}.property(),

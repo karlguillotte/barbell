@@ -4,6 +4,6 @@ export default Ember.Component.extend({
 	name: null,
 	open: 'openPopover',
 	openPopover: function(popoverName) {
-		this.sendAction('open', this, this.get('name'));
+		this.sendAction('open', this);
 	}.on('click')
 });

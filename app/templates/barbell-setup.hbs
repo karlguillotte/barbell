@@ -5,38 +5,14 @@
 			{{weight}} {{unit}}
 			{{ratchet-icon type="caret"}}
 		{{/ratchet-popover-link}}
-		{{#ratchet-popover-link tagName="h3" classNames="pull-left"}}
+		{{#ratchet-popover-link tagName="h3" classNames="pull-left" name="popovers/percentages"}}
 			@ {{percentage}}%
 			{{ratchet-icon type="caret"}}
 		{{/ratchet-popover-link}}
-		{{#ratchet-popover title="Percentage"}}
-			<ul class="table-view">
-				{{#each percentage in percentages}}
-				<li class="table-view-cell">
-					<a {{action "setPercentage" percentage}} href="#">
-						{{percentage}}%
-					</a>
-				</li>
-				{{/each}}
-			</ul>
-		{{/ratchet-popover}}
-		{{#ratchet-popover-link tagName="h3" classNames="pull-left"}}
+		{{#ratchet-popover-link tagName="h3" classNames="pull-left" name="popovers/bar-weights"}}
 			{{barWeight}} {{unit}}
 			{{ratchet-icon type="caret"}}
 		{{/ratchet-popover-link}}
-
-		{{#ratchet-popover title="Bar Weight"}}
-			<ul class="table-view">
-				{{#each barWeight in barWeights}}
-				<li class="table-view-cell">
-					<a {{action "setBarWeight" barWeight}} href="#">
-						{{barWeight}} {{unit}}
-					</a>
-				</li>
-				{{/each}}
-			</ul>
-		{{/ratchet-popover}}
-
 	</div>
 	<div class="card">
 		<ul class="table-view">
