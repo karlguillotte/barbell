@@ -1,4 +1,7 @@
-{{#ratchet-popover title=title}}
+{{#ratchet-modal title=title}}
+	<form {{action "add" newValue on="submit"}} class="content-padded">
+		{{input value=newValue placeholder=placeholder}}
+	</form>
 	<ul class="table-view">
 		{{#each value in values}}
 		<li class="table-view-cell">
@@ -8,5 +11,4 @@
 		</li>
 		{{/each}}
 	</ul>
-{{/ratchet-popover}}
-{{ratchet-backdrop close="closePopover"}}
+{{/ratchet-modal}}

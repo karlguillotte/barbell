@@ -7,5 +7,6 @@ export default Base.extend({
 	values: computed.reads('controllers.application.percentages'),
 	value: computed.alias('controllers.barbell-setup.percentage'),
 	valueSuffix: '%',
-	title: 'Percentage'
+	title: 'Set a percentage',
+	placeholder: 'Add a new percentage'
 });

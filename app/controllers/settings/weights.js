@@ -4,12 +4,13 @@ import Base from './base';
 var computed = Ember.computed;
 
 export default Base.extend({
-	values: computed.reads('controllers.application.barWeights'),
-	value: computed.alias('controllers.barbell-setup.barWeight'),
+	values: computed.reads('controllers.application.weights'),
+	value: computed.alias('controllers.barbell-setup.weight'),
 	valueSuffix: function() {
 		var unit = this.get('controllers.barbell-setup.unit');
 		
 		return ' %@'.fmt(unit);
 	}.property('controllers.barbell-setup.unit'),
-	title: 'Bar Weight'
+	title: 'Set a weight',
+	placeholder: 'Add a new weight'
 });

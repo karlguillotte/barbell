@@ -1,0 +1,14 @@
+{{#ratchet-modal title=title}}
+	<form {{action "add" newValue on="submit"}} class="content-padded">
+		{{input value=newValue placeholder=placeholder}}
+	</form>
+	<ul class="table-view">
+		{{#each value in values}}
+		<li class="table-view-cell">
+			<a {{action "set" value}} href="#">
+				{{value}}{{valueSuffix}}
+			</a>
+		</li>
+		{{/each}}
+	</ul>
+{{/ratchet-modal}}
