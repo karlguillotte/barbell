@@ -1,13 +1,11 @@
 import Ember from 'ember';
+import Base from './base';
 
-export default Ember.Controller.extend({
-	needs: ['barbell-setup', 'application'],
-	percentages: Ember.computed.reads('controllers.application.percentages'),
-	title: 'Percentage',
-	actions: {
-		setPercentage: function(percentage) {
-			this.set('controllers.barbell-setup.percentage', percentage);
-			this.send('closePopover');
-		}
-	}
+var computed = Ember.computed;
+
+export default Base.extend({
+	values: computed.reads('controllers.application.percentages'),
+	value: computed.alias('controllers.barbell-setup.percentage'),
+	valueSuffix: '%',
+	title: 'Percentage'
 });

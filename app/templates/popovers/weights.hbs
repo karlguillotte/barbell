@@ -1,9 +1,9 @@
 {{#ratchet-popover title=title}}
 	<ul class="table-view">
-		{{#each weight in weights}}
+		{{#each value in values}}
 		<li class="table-view-cell">
-			<a {{action "setWeight" weight}} href="#">
-				{{weight}} {{unit}}
+			<a {{action "set" value}} href="#">
+				{{value}}{{valueSuffix}}
 			</a>
 		</li>
 		{{/each}}

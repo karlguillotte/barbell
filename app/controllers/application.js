@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
 				plateWeight: plateWeight,
 				items: plates
 			});
-		});
+		}, this);
 
 		return StackCollection.create({
 			content: stacks

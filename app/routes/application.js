@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	renderComponent: function(componentName, outlet) {
-		this.render(modalName, {
+		this.render(componentName, {
 			into: 'application',
 			outlet: outlet,
-			controller: modalName
+			controller: componentName
 		});
 	},
 	disconnectComponent: function(outlet) {

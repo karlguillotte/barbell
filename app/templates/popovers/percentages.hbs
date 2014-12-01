@@ -1,9 +1,9 @@
 {{#ratchet-popover title=title}}
 	<ul class="table-view">
-		{{#each percentage in percentages}}
+		{{#each value in values}}
 		<li class="table-view-cell">
-			<a {{action "setPercentage" percentage}} href="#">
-				{{percentage}}%
+			<a {{action "set" value}} href="#">
+				{{value}}{{valueSuffix}}
 			</a>
 		</li>
 		{{/each}}

@@ -1,13 +1,15 @@
 import Ember from 'ember';
+import Base from './base';
 
-export default Ember.Controller.extend({
-	needs: ['barbell-setup', 'application'],
-	weights: Ember.computed.reads('controllers.application.weights'),
-	title: 'Weight',
-	actions: {
-		setWeight: function(weight) {
-			this.set('controllers.barbell-setup.weight', weight);
-			this.send('closePopover');
-		}
-	}
+var computed = Ember.computed;
+
+export default Base.extend({
+	values: computed.reads('controllers.application.weights'),
+	value: computed.alias('controllers.barbell-setup.weight'),
+	valueSuffix: function() {
+		var unit = this.get('controllers.barbell-setup.unit');
+		
+		return ' %@'.fmt(unit);
+	}.property('controllers.barbell-setup.unit'),
+	title: 'Weight'
 });
