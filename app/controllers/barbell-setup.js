@@ -3,14 +3,16 @@ import Ember from 'ember';
 
 var computed = Ember.computed;
 var reads = computed.reads;
+var alias = computed.alias;
 var compare = Ember.compare;
 
 export default Ember.ObjectController.extend({
 	needs: ['application'],
 	stacks: reads('controllers.application.stacks'),
 	effectiveWeight: product('weight', 'intensity'),
-	weight: 400,
-	intensity: 1,
+	weight: alias('storage.weight'),
+	barWeight: alias('storage.barWeight'),
+	intensity: alias('storage.intensity'),
 	unit: 'lb',
 	percentage: function(key, value) {
 		var intensity = this.get('intensity');
@@ -22,7 +24,6 @@ export default Ember.ObjectController.extend({
 
 		return intensity * 100;
 	}.property('intensity'),
-	barWeight: 45,
 	sideWeight: function() {
 		return (this.get('effectiveWeight') - this.get('barWeight')) / 2;
 	}.property('effectiveWeight', 'barWeight'),
@@ -55,14 +56,10 @@ export default Ember.ObjectController.extend({
 			
 			this.notifyPropertyChange('sideStacks');
 		},
-		setPercentage: function(percentage) {
-			this.set('percentage', percentage);
-		},
-		setBarWeight: function(weight) {
-			this.set('barWeight', weight);
-		},
-		setWeight: function(weight) {
-			this.set('weight', weight);
+		openSettings: function(name) {
+			var modalName = 'settings/%@'.fmt(name);
+
+			this.send('openModal', modalName);
 		}
 	}
 });

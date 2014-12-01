@@ -8,30 +8,30 @@ export default Ember.Controller.extend({
 	values: required(Array),
 	value: required(Number),
 	newValue: null,
-	title: required(String),
-	valueSuffix: required(String),
-	placeholder: required(String),
-	close: function() {
-		this.send('closeModal');
-	},
 	actions: {
 		set: function(value) {
+			value = Number(value);
+
 			this.set('value', value);
 			
-			this.close();
+			this.send('closeModal');
 		},
-		remove: function(value) {
+		remove: function(button) {
 			var values = this.get('values');
-
-			values.removeObject(value);
-
-			this.close();
+			var value = Number(button.get('data-value'));			
+			var indexOf = values.indexOf(value);
+			
+			values.removeAt(indexOf);
 		},
 		add: function(value) {
 			var values = this.get('values');
 
-			values.pushObject(value);
+			value = Number(value);
 
+			if (!values.contains(value)) {
+				values.push(value);
+			}
+			
 			this.send('set', value);
 			this.set('newValue', null);
 		}

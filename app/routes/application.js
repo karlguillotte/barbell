@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	renderComponent: function(componentName, outlet) {
+	renderComponent: function(outlet, componentName) {
 		this.render(componentName, {
 			into: 'application',
 			outlet: outlet,
@@ -16,7 +16,7 @@ export default Ember.Route.extend({
 	},
 	actions: {
 		openModal: function(modalName) {
-			this.renderComponent(modalName, 'modal');
+			this.renderComponent('modal', modalName);
 		},
 		closeModal: function() {
 			this.disconnectComponent('modal');
@@ -24,7 +24,7 @@ export default Ember.Route.extend({
 		openPopover: function(link) {
 			var popoverName = link.get('name');
 
-			this.renderComponent(popoverName, 'popover');
+			this.renderComponent('popover', popoverName);
 		},
 		closePopover: function() {
 			this.disconnectComponent('popover');

@@ -1,15 +1,15 @@
 <div class="content-padded">
 	<h1>{{effectiveWeight}} {{unit}}</h1>
 	<div class="card">
-		<h3 {{action "openModal" "settings/weights"}} class="pull-left">
+		<h3 {{action "openSettings" "weights"}} class="pull-left">
 			{{weight}} {{unit}}
 			{{ratchet-icon type="caret"}}
 		</h3>
-		<h3 {{action "openModal" "settings/percentages"}} class="pull-left">
+		<h3 {{action "openSettings" "percentages"}} class="pull-left">
 			@ {{percentage}}%
 			{{ratchet-icon type="caret"}}
 		</h3>
-		<h3 {{action "openModal" "settings/bar-weights"}} class="pull-left">
+		<h3 {{action "openSettings" "bar-weights"}} class="pull-left">
 			{{barWeight}} {{unit}}
 			{{ratchet-icon type="caret"}}
 		</h3>
