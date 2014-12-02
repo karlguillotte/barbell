@@ -2,6 +2,7 @@
 	<form {{action "add" newValue on="submit"}} class="content-padded">
 		{{input value=newValue type="number" placeholder="Add a new percentage" min=0 max=100}}
 	</form>
+	{{#if values}}
 	<ul class="table-view">
 		{{#each value in values}}
 		<li class="table-view-cell">
@@ -14,4 +15,5 @@
 		</li>
 		{{/each}}
 	</ul>
+	{{/if}}
 {{/ratchet-modal}}

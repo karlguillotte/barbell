@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 var serialize = JSON.stringify;
 var deserialize = JSON.parse;
+var isArray = Ember.isArray;
 
 export default Ember.Object.extend({
 	persistence: window.localStorage,
@@ -15,8 +16,9 @@ export default Ember.Object.extend({
 		var namespacedKey = this.computeNamespacedKey(key);
 		var persistence = this.get('persistence');
 		var payload = persistence.getItem(namespacedKey);
-		
-		return deserialize(payload);
+		var property = deserialize(payload);
+
+		return property;
 	},
 	setUnknownProperty: function(key, value) {
 		var namespacedKey = this.computeNamespacedKey(key);

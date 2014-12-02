@@ -5,7 +5,7 @@ export default Ember.Component.extend(RatchetType, {
 	tagName: 'button',
 	typeClass: 'btn',
 	sendClickAction: function(event) {
-		// event.preventDefault();
+		event.preventDefault();
 
 		this.sendAction('click', this);
 	}.on('click')

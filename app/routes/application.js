@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+var camelize = Ember.String.camelize;
+
 export default Ember.Route.extend({
 	renderComponent: function(outlet, componentName) {
 		this.render(componentName, {
@@ -15,6 +17,25 @@ export default Ember.Route.extend({
 		});		
 	},
 	actions: {
+		addValue: function(type, value) {
+			value = Number(value);
+			var key = camelize(type);
+			var controller = this.controller;
+			var values = controller.get(key);
+
+			values.insertAt(0, value);
+			controller.set(key, values);
+		},
+		removeValue: function(type, value) {
+			value = Number(value);
+			var key = camelize(type);
+			var controller = this.controller;
+			var values = controller.get(key);
+			var indexOf = values.indexOf(value);
+
+			values.removeAt(indexOf, value);
+			controller.set(key, values);
+		},
 		openModal: function(modalName) {
 			this.renderComponent('modal', modalName);
 		},

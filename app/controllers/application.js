@@ -6,7 +6,16 @@ var computed = Ember.computed;
 var alias = computed.alias;
 
 export default Ember.Controller.extend({
-	percentages: [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50],
+	initPercentages: function() {
+		if (this.get('percentages')) {
+			return;
+		}
+
+		var percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50];
+
+		this.set('percentages', percentages);
+	}.on('init'),
+	percentages: alias('storage.percentages'),
 	availablePlateWeights: [45, 35, 25, 10, 5, 2.5],
 	availableLengthPlateWeights: [8, 6, 6, 8, 4, 2],
 	stacks: function() {
@@ -30,6 +39,18 @@ export default Ember.Controller.extend({
 		});
 	}.property(),
 	units: ['kg', 'lb'],
-	weights: [400, 395, 390],
-	barWeights: [65, 55, 45]
+	initWeights: function() {
+		var weights = Ember.A(this.get('weights'));
+
+		this.set('weights', weights);
+	}.on('init'),
+	weights: alias('storage.weights'),
+	initBarWeights: function() {
+		if (this.get('barWeights')) {
+			return;
+		}
+
+		this.set('barWeights', [65, 55, 45]);
+	}.on('init'),
+	barWeights: alias('storage.barWeights')
 });
