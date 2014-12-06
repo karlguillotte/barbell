@@ -3,11 +3,12 @@ import StackCollection from '../models/stack-collection';
 import Ember from 'ember';
 
 var computed = Ember.computed;
+var isEmpty = Ember.isEmpty;
 var alias = computed.alias;
 
 export default Ember.Controller.extend({
 	initPercentages: function() {
-		if (this.get('percentages')) {
+		if (!isEmpty(this.get('percentages'))) {
 			return;
 		}
 
@@ -46,7 +47,7 @@ export default Ember.Controller.extend({
 	}.on('init'),
 	weights: alias('storage.weights'),
 	initBarWeights: function() {
-		if (this.get('barWeights')) {
+		if (!isEmpty(this.get('barWeights'))) {
 			return;
 		}
 

@@ -8,9 +8,7 @@ export default Ember.Mixin.create({
 		var type = this.get('type');
 		var typeClass = this.get('typeClass');
 
-		if (!type) {
-			return null;
-		}
+		Ember.assert('"type" and "typeClass" are required for a %@ component.'.fmt(this.constructor.toString()), type && typeClass);
 
 		return '%@-%@'.fmt(typeClass, type);
 	}.property('type')

@@ -14,6 +14,7 @@
 			{{ratchet-icon type="caret"}}
 		</h3>
 	</div>
+	{{#if stacks.totalWeight}}
 	<div class="card">
 		<ul class="table-view">
 			<li class="table-view-cell table-view-divider">
@@ -22,19 +23,23 @@
 					Reset
 				{{/ratchet-button}}
 			</li>
-			{{#each stack in sideStacks}}
+			{{#each stack in stacks}}
 				{{#if stack.length}}
 					<li class="table-view-cell">
 						{{stack.length}} x {{stack.plateWeight}} {{unit}} = {{stack.totalWeight}} {{unit}}
-						{{#ratchet-button type="link" click="removePlate"}}
+						{{#ratchet-button type="link" on-click="removePlate" data-plate-weight=stack.plateWeight}}
 							{{ratchet-icon type="down"}}
 						{{/ratchet-button}}
 					</li>
 				{{/if}}
 			{{/each}}
 			<li class="table-view-cell table-view-divider">
-				Total: {{sideStacks.totalWeight}} {{unit}}
+				Total: {{stacks.totalWeight}} {{unit}}
 			</li>
 		</ul>
 	</div>	
+	{{/if}}
+	{{#ratchet-button type="primary" block=true on-click="rest"}}
+		Rest
+	{{/ratchet-button}}
 </div>

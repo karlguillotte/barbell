@@ -8,7 +8,6 @@ var compare = Ember.compare;
 
 export default Ember.ObjectController.extend({
 	needs: ['application'],
-	stacks: reads('controllers.application.stacks'),
 	effectiveWeight: product('weight', 'intensity'),
 	weight: alias('storage.weight'),
 	barWeight: alias('storage.barWeight'),
@@ -24,42 +23,46 @@ export default Ember.ObjectController.extend({
 
 		return intensity * 100;
 	}.property('intensity'),
-	sideWeight: function() {
+	weightPerSide: function() {
 		return (this.get('effectiveWeight') - this.get('barWeight')) / 2;
 	}.property('effectiveWeight', 'barWeight'),
-	sideStacks: function() {
-		var sideWeight = this.get('sideWeight');
-		var stacks = this.get('stacks');
+	stacks: function() {
+		var weightPerSide = this.get('weightPerSide');
+		var stacks = this.get('controllers.application.stacks');
 
-		return stacks.pick(sideWeight);
+		return stacks.pick(weightPerSide);
 	}.property(),
-	balanceSideStacks: function() {
-		var stacks = this.get('sideStacks');
-		var weight = this.get('sideWeight');
+	balance: function() {
+		var stacks = this.get('stacks');
+		var weight = this.get('weightPerSide');
 
 		stacks.balance(weight);
-	}.observes('sideWeight'),
+	}.observes('weightPerSide'),
 	actions: {
-		removePlate: function(weight) {
-			var stacks = this.get('sideStacks');
+		removePlate: function(button) {
+			var weight = button.get('data-plate-weight');
+			var stacks = this.get('stacks');
 			var stack = stacks.findBy('plateWeight', weight);
 			var length = stack.get('length');
 
 			stack.trim(--length);
 			
-			this.balanceSideStacks();
+			this.balance();
 		},
 		reset: function() {
-			var stacks = this.get('sideStacks');
+			var stacks = this.get('stacks');
 			
 			stacks.empty();
 			
-			this.notifyPropertyChange('sideStacks');
+			this.notifyPropertyChange('stacks');
 		},
 		openSettings: function(name) {
 			var modalName = 'settings/%@'.fmt(name);
 
 			this.send('openModal', modalName);
+		},
+		rest: function() {
+			this.send('openModal', 'rest');
 		}
 	}
 });

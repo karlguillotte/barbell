@@ -10,10 +10,9 @@ export default Ember.Component.extend({
 	addActiveClassName: function() {
 		var element = this.get('element');
 
-		next(function() {
-			element.classList.add('active');
-		});
+		next(element.classList, 'add', 'active');
 	}.on('didInsertElement'),
+	closed: 'closeModal',
 	actions: {
 		close: function() {
 			var element = this.get('element');

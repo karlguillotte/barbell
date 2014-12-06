@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 var camelize = Ember.String.camelize;
+var compare = Ember.compare;
 
 export default Ember.Route.extend({
 	renderComponent: function(outlet, componentName) {
@@ -23,8 +24,11 @@ export default Ember.Route.extend({
 			var controller = this.controller;
 			var values = controller.get(key);
 
-			values.insertAt(0, value);
-			controller.set(key, values);
+			if (!values.contains(value)) {
+				values.insertAt(0, value);
+			}
+
+			controller.set(key, values.sort(compare).reverse());
 		},
 		removeValue: function(type, value) {
 			value = Number(value);
@@ -33,7 +37,7 @@ export default Ember.Route.extend({
 			var values = controller.get(key);
 			var indexOf = values.indexOf(value);
 
-			values.removeAt(indexOf, value);
+			values.removeAt(indexOf, 1);
 			controller.set(key, values);
 		},
 		openModal: function(modalName) {
