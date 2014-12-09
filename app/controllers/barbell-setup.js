@@ -8,9 +8,27 @@ var alias = computed.alias;
 export default Ember.ObjectController.extend({
 	needs: ['application'],
 	effectiveWeight: product('weight', 'intensity'),
-	weight: alias('storage.weight'),
-	barWeight: alias('storage.barWeight'),
-	intensity: alias('storage.intensity'),
+	weight: function(key, value) {
+		value = this.get('storage.weight') || value || 200;
+
+		this.set('storage.weight', value);
+		
+		return value;
+	}.property('storage.weight'),
+	barWeight: function(key, value) {
+		value = this.get('storage.barWeight') || value || 55;
+
+		this.set('storage.barWeight', value);
+		
+		return value;
+	}.property('storage.barWeight'),
+	intensity: function(key, value) {
+		value = this.get('storage.intensity') || value || 1;
+
+		this.set('storage.intensity', value);
+		
+		return value;
+	}.property('storage.intensity'),
 	unit: 'lb',
 	isDirty: false,
 	diff: difference('weightPerSide', 'stacks.totalWeight'),
