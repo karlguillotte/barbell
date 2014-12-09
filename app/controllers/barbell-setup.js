@@ -6,21 +6,21 @@ export default Ember.ObjectController.extend({
 	needs: ['application'],
 	effectiveWeight: product('weight', 'intensity'),
 	weight: function(key, value) {
-		value = this.get('storage.weight') || value || 200;
+		value = this.storage.getWithDefault('weight', value || 200);
 
 		this.set('storage.weight', value);
 		
 		return value;
 	}.property('storage.weight'),
 	barWeight: function(key, value) {
-		value = this.get('storage.barWeight') || value || 55;
+		value = this.storage.getWithDefault('barWeight', value || 55);
 
 		this.set('storage.barWeight', value);
 		
 		return value;
 	}.property('storage.barWeight'),
 	intensity: function(key, value) {
-		value = this.get('storage.intensity') || value || 1;
+		value = this.storage.getWithDefault('intensity', value || 1);
 
 		this.set('storage.intensity', value);
 		
