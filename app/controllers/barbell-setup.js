@@ -2,9 +2,6 @@ import difference from 'ember-cpm/macros/difference';
 import product from 'ember-cpm/macros/product';
 import Ember from 'ember';
 
-var computed = Ember.computed;
-var alias = computed.alias;
-
 export default Ember.ObjectController.extend({
 	needs: ['application'],
 	effectiveWeight: product('weight', 'intensity'),
