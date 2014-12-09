@@ -1,0 +1,30 @@
+@import 'typography';
+
+h1.total-weight {
+	text-align: center;
+	margin: 25px 0;
+}
+
+.inputs {
+	display: table;
+	margin: 25px 0;
+	 > h3 {
+		display: table-cell;
+		padding: 5px 0;
+		width: 1%;
+		text-align: center;
+		border: 1px solid transparent;
+		 > small {
+			display: block;
+			font-size: 15px;
+			color: #ddd;
+			line-height: 20px;
+		}
+		&:hover {
+			border-color: #ddd;
+			background-color: #fafafa;
+			border-radius: 6px;
+			cursor: pointer;
+		};
+	}
+}

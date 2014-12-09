@@ -4,5 +4,9 @@
 <div class="content">
 	{{outlet}}
 </div>
+<footer class="bar bar-standard bar-footer">
+	{{#ratchet-button type="primary" block=true on-click="rest"}}
+		Rest
+	{{/ratchet-button}}
+</footer>
 {{outlet "modal"}}
-{{outlet "popover"}}

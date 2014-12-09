@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 var serialize = JSON.stringify;
 var deserialize = JSON.parse;
-var isArray = Ember.isArray;
 
 export default Ember.Object.extend({
 	persistence: window.localStorage,

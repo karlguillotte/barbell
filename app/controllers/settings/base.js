@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 var required = Ember.required;
-var computed = Ember.computed;
 
 export default Ember.Controller.extend({
 	needs: ['barbell-setup', 'application'],

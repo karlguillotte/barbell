@@ -18,6 +18,10 @@ export default Ember.Route.extend({
 		});		
 	},
 	actions: {
+		rest: function() {
+			this.controllerFor('rest').send('start');
+			this.send('openModal', 'rest');
+		},
 		addValue: function(type, value) {
 			value = Number(value);
 			var key = camelize(type);

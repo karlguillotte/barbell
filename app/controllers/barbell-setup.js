@@ -1,10 +1,9 @@
+import difference from 'ember-cpm/macros/difference';
 import product from 'ember-cpm/macros/product';
 import Ember from 'ember';
 
 var computed = Ember.computed;
-var reads = computed.reads;
 var alias = computed.alias;
-var compare = Ember.compare;
 
 export default Ember.ObjectController.extend({
 	needs: ['application'],
@@ -13,6 +12,8 @@ export default Ember.ObjectController.extend({
 	barWeight: alias('storage.barWeight'),
 	intensity: alias('storage.intensity'),
 	unit: 'lb',
+	isDirty: false,
+	diff: difference('weightPerSide', 'stacks.totalWeight'),
 	percentage: function(key, value) {
 		var intensity = this.get('intensity');
 
@@ -48,6 +49,8 @@ export default Ember.ObjectController.extend({
 			stack.trim(--length);
 			
 			this.balance();
+
+			this.set('isDirty', true);
 		},
 		reset: function() {
 			var stacks = this.get('stacks');
@@ -55,14 +58,12 @@ export default Ember.ObjectController.extend({
 			stacks.empty();
 			
 			this.notifyPropertyChange('stacks');
+			this.set('isDirty', false);
 		},
 		openSettings: function(name) {
 			var modalName = 'settings/%@'.fmt(name);
 
 			this.send('openModal', modalName);
-		},
-		rest: function() {
-			this.send('openModal', 'rest');
 		}
 	}
 });

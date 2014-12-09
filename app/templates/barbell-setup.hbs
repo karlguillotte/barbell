@@ -1,45 +1,54 @@
 <div class="content-padded">
-	<h1>{{effectiveWeight}} {{unit}}</h1>
-	<div class="card">
-		<h3 {{action "openSettings" "weights"}} class="pull-left">
-			{{weight}} {{unit}}
-			{{ratchet-icon type="caret"}}
-		</h3>
-		<h3 {{action "openSettings" "percentages"}} class="pull-left">
-			@ {{percentage}}%
-			{{ratchet-icon type="caret"}}
-		</h3>
-		<h3 {{action "openSettings" "bar-weights"}} class="pull-left">
-			{{barWeight}} {{unit}}
-			{{ratchet-icon type="caret"}}
-		</h3>
+	<h1 class="total-weight">{{effectiveWeight}} {{unit}}</h1>
+	<div class="content-padded">
+		<section class="inputs">
+			<h3 {{action "openSettings" "weights"}}>
+				{{weight}} {{unit}}
+				{{ratchet-icon type="caret"}}
+				<small>Weight</small>
+			</h3>
+			<h3 {{action "openSettings" "percentages"}}>
+				{{percentage}}%
+				{{ratchet-icon type="caret"}}
+				<small>Intensity</small>
+			</h3>
+			<h3 {{action "openSettings" "bar-weights"}}>
+				{{barWeight}} {{unit}}
+				{{ratchet-icon type="caret"}}
+				<small>Bar</small>
+			</h3>
+		</section>
 	</div>
 	{{#if stacks.totalWeight}}
-	<div class="card">
-		<ul class="table-view">
-			<li class="table-view-cell table-view-divider">
-				Plates per side
-				{{#ratchet-button type="negative" on-click="reset"}}
+		<div class="card">
+			<ul class="table-view">
+				<li class="table-view-cell table-view-divider">
+					Plates per side
+				</li>
+				{{#each stack in stacks}}
+					{{#if stack.length}}
+						<li class="table-view-cell">
+							{{stack.length}} x {{stack.plateWeight}} {{unit}} = {{stack.totalWeight}} {{unit}}
+							{{#ratchet-button inverted=true on-click="removePlate" data-plate-weight=stack.plateWeight}}
+								{{ratchet-icon type="down"}}
+							{{/ratchet-button}}
+						</li>
+					{{/if}}
+				{{/each}}
+				<li class="table-view-cell table-view-divider">
+					Total: {{stacks.totalWeight}} {{unit}}
+					{{#if diff}}
+						<span class="text-negative">(-{{diff}} {{unit}})</span>
+					{{/if}}
+				</li>
+			</ul>
+		</div>
+		{{#if isDirty}}
+			<div class="content-padded">
+				{{#ratchet-button type="negative" block=true on-click="reset"}}
 					Reset
 				{{/ratchet-button}}
-			</li>
-			{{#each stack in stacks}}
-				{{#if stack.length}}
-					<li class="table-view-cell">
-						{{stack.length}} x {{stack.plateWeight}} {{unit}} = {{stack.totalWeight}} {{unit}}
-						{{#ratchet-button type="link" on-click="removePlate" data-plate-weight=stack.plateWeight}}
-							{{ratchet-icon type="down"}}
-						{{/ratchet-button}}
-					</li>
-				{{/if}}
-			{{/each}}
-			<li class="table-view-cell table-view-divider">
-				Total: {{stacks.totalWeight}} {{unit}}
-			</li>
-		</ul>
-	</div>	
+			</div>
+		{{/if}}
 	{{/if}}
-	{{#ratchet-button type="primary" block=true on-click="rest"}}
-		Rest
-	{{/ratchet-button}}
 </div>

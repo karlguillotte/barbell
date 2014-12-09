@@ -1,10 +1,7 @@
 {{#ratchet-modal title="Rest time: enjoy!"}}
 	<div class="content-padded">
-		<form {{action "add" newValue on="submit"}} class="content-padded">
-			{{input value=newTime type="time" placeholder="Add a bar weight" min=0}}
-		</form>
-		<h1>
-			REST:{{time}}
+		<h1 class="text-center">
+			{{minute}}:{{second}}
 		</h1>
 	</div>
 {{/ratchet-modal}}
