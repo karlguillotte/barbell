@@ -7,5 +7,7 @@ export default Base.extend({
 	values: computed.reads('controllers.application.barWeights'),
 	value: computed.alias('controllers.barbell-setup.barWeight'),
 	unit: computed.reads('controllers.barbell-setup.unit'),
-	type: 'bar-weights'
+	type: 'bar-weights',
+	minValue: 25,
+	maxValue: 100
 });

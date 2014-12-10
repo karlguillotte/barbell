@@ -1,19 +1,22 @@
 {{#ratchet-modal title="Set a bar weight"}}
 	<form {{action "add" newValue on="submit"}} class="content-padded">
-		{{input value=newValue type="number" placeholder="Add a bar weight" min=0}}
+		{{input value=newValue type="number" placeholder="Add a new bar weight" min=minValue max=maxValue}}
+		{{#if isValid}}
+			{{input type="submit" classNames="btn btn-block btn-positive" value="Add bar weight"}}
+		{{/if}}
 	</form>
 	{{#if values}}
-	<ul class="table-view">
-		{{#each value in values}}
-		<li class="table-view-cell">
-			<a {{action "set" value}} href="#">
-				{{value}} {{unit}}
-			</a>
-			{{#ratchet-button type="link" data-value=value on-click="remove"}}
-				{{ratchet-icon type="trash"}}
-			{{/ratchet-button}}
-		</li>
-		{{/each}}
-	</ul>
+		<ul class="table-view">
+			{{#each value in values}}
+			<li class="table-view-cell">
+				<a {{action "set" value}} href="#">
+					{{value}} {{unit}}
+				</a>
+				{{#ratchet-button type="link" data-value=value on-click="remove"}}
+					{{ratchet-icon type="trash"}}
+				{{/ratchet-button}}
+			</li>
+			{{/each}}
+		</ul>
 	{{/if}}
 {{/ratchet-modal}}
