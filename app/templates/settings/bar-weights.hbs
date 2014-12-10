@@ -1,7 +1,6 @@
 {{#ratchet-modal title="Set a bar weight"}}
 	<form {{action "add" newValue on="submit"}} class="content-padded">
 		{{input value=newValue type="number" placeholder="Add a bar weight" min=0}}
-		{{input type="submit"}}
 	</form>
 	{{#if values}}
 	<ul class="table-view">

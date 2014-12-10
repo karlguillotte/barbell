@@ -1,7 +1,6 @@
 {{#ratchet-modal title="Set a percentage"}}
 	<form {{action "add" newValue on="submit"}} class="content-padded">
 		{{input value=newValue type="number" placeholder="Add a new percentage" min=0 max=100}}
-		{{input type="submit"}}
 	</form>
 	{{#if values}}
 	<ul class="table-view">
