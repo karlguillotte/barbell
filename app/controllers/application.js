@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 	}.on('init'),
 	percentages: alias('storage.percentages'),
 	availablePlateWeights: [45, 35, 25, 10, 5, 2.5],
-	availableLengthPlateWeights: [8, 6, 6, 8, 4, 2],
+	availableLengthPlateWeights: [8, 4, 8, 10, 6, 4],
 	stacks: function() {
 		var stacks = this.availablePlateWeights.map(function(plateWeight, index) {
 			var plates = [];
