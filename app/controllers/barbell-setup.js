@@ -37,6 +37,7 @@ export default Ember.ObjectController.extend({
 	unit: 'lb',
 	isDirty: false,
 	diff: difference('weightPerSide', 'stacks.totalWeight'),
+	totalDiff: product('diff', 2),
 	percentage: function(key, value) {
 		var intensity = this.get('intensity');
 

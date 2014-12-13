@@ -1,5 +1,10 @@
 <div class="content-padded">
-	<h1 class="total-weight">{{effectiveWeight}} {{unit}}</h1>
+	<h1 class="total-weight">
+		{{effectiveWeight}} {{unit}}
+		{{#if totalDiff}}
+			<span class="text-negative">(-{{totalDiff}} {{unit}})</span>
+		{{/if}}
+	</h1>
 	<div class="content-padded">
 		<section class="inputs">
 			<h3 {{action "openSettings" "weights"}}>
@@ -43,12 +48,15 @@
 				</li>
 			</ul>
 		</div>
-		{{#if isDirty}}
-			<div class="content-padded">
-				{{#ratchet-button type="negative" block=true on-click="reset"}}
-					Reset
-				{{/ratchet-button}}
-			</div>
-		{{/if}}
+	{{else}}
+		<h2 class="text-center">Impossible to find plates</h2>
+		<h3 class="text-center">Please, choose differente values</h3>
+	{{/if}}
+	{{#if isDirty}}
+		<div class="content-padded">
+			{{#ratchet-button type="negative" block=true on-click="reset"}}
+				Reset
+			{{/ratchet-button}}
+		</div>
 	{{/if}}
 </div>
