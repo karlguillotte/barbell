@@ -1,6 +1,6 @@
 {{#ratchet-modal title="Set a weight"}}
 	<form {{action "add" newValue on="submit"}} class="content-padded">
-		{{input value=newValue type="number" placeholder="Add a new weight" min=minValue max=maxValue}}
+		{{input value=newValue type="number" autofocus=true placeholder="Add a new weight" min=minValue max=maxValue}}
 		{{#if isValid}}
 			{{input type="submit" classNames="btn btn-block btn-positive" value="Add new weight"}}
 		{{/if}}
