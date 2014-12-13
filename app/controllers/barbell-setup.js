@@ -9,10 +9,7 @@ export default Ember.ObjectController.extend({
 	effectiveWeight: product('weight', 'intensity'),
 	weight: function(key, value) {
 		if (!value) {
-			value = this.storage.get('weight');
-		}
-		if (isNone(value)) {
-			value = 200;
+			value = this.storage.getWithDefault('weight', 200);
 		}
 
 		this.storage.set('weight', value);
@@ -21,10 +18,7 @@ export default Ember.ObjectController.extend({
 	}.property('storage.weight'),
 	barWeight: function(key, value) {
 		if (!value) {
-			value = this.storage.get('barWeight');
-		}
-		if (isNone(value)) {
-			value = 55;
+			value = this.storage.getWithDefault('barWeight', 55);
 		}
 
 		this.storage.set('barWeight', value);
@@ -33,10 +27,7 @@ export default Ember.ObjectController.extend({
 	}.property('storage.barWeight'),
 	intensity: function(key, value) {
 		if (!value) {
-			value = this.storage.get('intensity');
-		}
-		if (isNone(value)) {
-			value = 1;
+			value = this.storage.getWithDefault('intensity', 1);
 		}
 
 		this.storage.set('intensity', value);
