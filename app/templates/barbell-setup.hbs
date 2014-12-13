@@ -29,8 +29,8 @@
 					{{#if stack.length}}
 						<li class="table-view-cell">
 							{{stack.length}} x {{stack.plateWeight}} {{unit}} = {{stack.totalWeight}} {{unit}}
-							{{#ratchet-button inverted=true on-click="removePlate" data-plate-weight=stack.plateWeight}}
-								{{ratchet-icon type="down"}}
+							{{#ratchet-button type="negative" outlined=true on-click="removePlate" data-plate-weight=stack.plateWeight}}
+								Remove a plate
 							{{/ratchet-button}}
 						</li>
 					{{/if}}

@@ -12,8 +12,8 @@
 				<a {{action "set" value}} href="#">
 					{{value}}%
 				</a>
-				{{#ratchet-button type="link" data-value=value on-click="remove"}}
-					{{ratchet-icon type="trash"}}
+				{{#ratchet-button type="negative" outlined=true data-value=value on-click="remove"}}
+					Remove
 				{{/ratchet-button}}
 			</li>
 			{{/each}}

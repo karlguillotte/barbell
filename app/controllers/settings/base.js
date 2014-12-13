@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 	value: required(Number),
 	type: required(String),
 	newValue: null,
-	minValue: 0,
+	minValue: 1,
 	maxValue: required(Number),
 	isValid: function() {
 		var newValue = this.get('newValue');
