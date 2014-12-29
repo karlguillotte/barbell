@@ -15,10 +15,10 @@ export default Ember.Object.extend({
 		var namespacedKey = this.computeNamespacedKey(key);
 		var persistence = this.get('persistence');
 		var payload = persistence.getItem(namespacedKey);
-		var property = undefined;
+		var property;
 
 		if (persistence.hasOwnProperty(namespacedKey)) {
-			var payload = persistence.getItem(namespacedKey);
+			payload = persistence.getItem(namespacedKey);
 			property = deserialize(payload);
 		}
 
